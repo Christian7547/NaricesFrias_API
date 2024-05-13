@@ -22,18 +22,6 @@ public class OwnerCrudRepository implements IOwnerDomainRepository {
     }
 
     @Override
-    public Owner createOwner(Owner owner) {
-        var toOwnerEntity = ownerMapper.toOwnerEntity(owner);
-        var ownerCreated = ownerRepository.save(toOwnerEntity);
-        return ownerMapper.toOwner(ownerCreated);
-    }
-
-    @Override
-    public void removeOwner(int ownerId) {
-        ownerRepository.deleteById(ownerId);
-    }
-
-    @Override
     public Owner getOwner(int ownerId) {
         var ownerEntity = ownerRepository.findById(ownerId);
         return ownerEntity.map(entity -> ownerMapper.toOwner(entity)).orElse(null);
@@ -42,13 +30,5 @@ public class OwnerCrudRepository implements IOwnerDomainRepository {
     @Override
     public ArrayList<Owner> getOwners() {
         return this.ownerMapper.toOwners(this.ownerRepository.findAll());
-    }
-
-    @Override
-    public Owner editOwner(int ownerId, Owner owner) {
-        var ownerEntity = ownerRepository.findById(ownerId);
-        ownerMapper.updateOwner(ownerEntity.get(), ownerMapper.toOwnerEntity(owner));
-        var updatedOwner = ownerRepository.save(ownerEntity.get());
-        return ownerMapper.toOwner(updatedOwner);
     }
 }

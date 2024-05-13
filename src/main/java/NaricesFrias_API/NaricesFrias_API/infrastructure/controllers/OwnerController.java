@@ -23,24 +23,8 @@ public class OwnerController {
         return new ResponseEntity<>(ownerService.getOwners(), HttpStatus.OK);
     }
 
-    @PostMapping("/newOwner")
-    public ResponseEntity<Owner> newOwner(@RequestBody Owner owner){
-        return new ResponseEntity<>(ownerService.createOwner(owner), HttpStatus.CREATED);
-    }
-
     @GetMapping("/getOwner/{id}")
     public ResponseEntity<Owner> getOwner(@PathVariable int id){
         return new ResponseEntity<>(ownerService.getOwner(id), HttpStatus.OK);
-    }
-
-    @PatchMapping("/editOwner/{id}")
-    public ResponseEntity<Owner> editOwner(@PathVariable int id, @RequestBody Owner owner){
-        return new ResponseEntity<>(ownerService.editOwner(id, owner), HttpStatus.NO_CONTENT);
-    }
-
-    @DeleteMapping("/removeOwner/{id}")
-    public ResponseEntity<?> removeOwner(@PathVariable int id){
-        ownerService.removeOwner(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

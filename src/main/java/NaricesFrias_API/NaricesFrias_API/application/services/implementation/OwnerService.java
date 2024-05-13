@@ -15,16 +15,6 @@ public class OwnerService implements IOwnerService {
     }
 
     @Override
-    public Owner createOwner(Owner owner) {
-        return ownerRepository.createOwner(owner);
-    }
-
-    @Override
-    public void removeOwner(int ownerId) {
-        ownerRepository.removeOwner(ownerId);
-    }
-
-    @Override
     public Owner getOwner(int ownerId) {
         return ownerRepository.getOwner(ownerId);
     }
@@ -32,11 +22,5 @@ public class OwnerService implements IOwnerService {
     @Override
     public ArrayList<Owner> getOwners() {
         return ownerRepository.getOwners();
-    }
-
-    @Override
-    public Owner editOwner(int ownerId, Owner owner) {
-        owner.id = ownerId;
-        return ownerRepository.editOwner(ownerId, owner);
     }
 }
