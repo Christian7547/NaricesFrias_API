@@ -38,8 +38,8 @@ public class PetController {
         return new ResponseEntity<>(petService.editPet(id, pet), HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/removeOwner/{id}")
-    public ResponseEntity<?> removeOwner(@PathVariable int id){
+    @DeleteMapping("/removePet/{id}")
+    public ResponseEntity<?> removePet(@PathVariable int id){
         petService.removePet(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
