@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class PetConf {
 
     @Bean
-    IPetService ownerBeanService(IPetDomainRepository petDomainRepository){
+    IPetService petBeanService(IPetDomainRepository petDomainRepository){
         return new PetService(petDomainRepository);
     }
 }
