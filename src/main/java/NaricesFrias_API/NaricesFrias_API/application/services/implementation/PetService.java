@@ -15,6 +15,7 @@ public class PetService implements IPetService {
 
     @Override
     public Pet createPet(Pet pet) {
+        pet.status = 1;
         return petRepository.createPet(pet);
     }
 

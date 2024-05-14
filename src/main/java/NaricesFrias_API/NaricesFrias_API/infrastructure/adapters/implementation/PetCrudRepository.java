@@ -1,11 +1,8 @@
 package NaricesFrias_API.NaricesFrias_API.infrastructure.adapters.implementation;
 
-import NaricesFrias_API.NaricesFrias_API.domain.models.Owner;
 import NaricesFrias_API.NaricesFrias_API.domain.models.Pet;
 import NaricesFrias_API.NaricesFrias_API.domain.ports.IPetDomainRepository;
-import NaricesFrias_API.NaricesFrias_API.infrastructure.adapters.interfaces.IOwnerRepository;
 import NaricesFrias_API.NaricesFrias_API.infrastructure.adapters.interfaces.IPetRepository;
-import NaricesFrias_API.NaricesFrias_API.infrastructure.mappers.OwnerMapper;
 import NaricesFrias_API.NaricesFrias_API.infrastructure.mappers.PetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "pet")
+@Table(name = "pet", schema = "public")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,5 +31,5 @@ public class PetEntity {
     public short status;
 
     @Column(name = "owner_id")
-    public int owner_id;
+    public int ownerId;
 }
