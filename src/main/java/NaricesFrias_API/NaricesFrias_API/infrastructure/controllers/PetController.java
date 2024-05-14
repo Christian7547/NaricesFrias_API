@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/api/Pets")
+@RequestMapping("/api/pets")
 public class PetController {
 
     private final IPetService petService;
