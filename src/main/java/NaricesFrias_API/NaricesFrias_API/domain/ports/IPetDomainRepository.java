@@ -10,4 +10,6 @@ public interface IPetDomainRepository {
     Pet getPet(int ownerId);
     ArrayList<Pet> getPets();
     Pet editPet(int petId, Pet pet);
+    int uspInsertPetImages(String petName, String petBreed, String petGender, String petInfo,
+                             int petOwnerId, String petPath1, String petPath2, String petPath3);
 }
