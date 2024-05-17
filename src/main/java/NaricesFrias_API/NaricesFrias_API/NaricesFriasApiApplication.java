@@ -9,5 +9,4 @@ public class NaricesFriasApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(NaricesFriasApiApplication.class, args);
 	}
-
 }
