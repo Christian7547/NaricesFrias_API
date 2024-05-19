@@ -7,4 +7,5 @@ import java.util.ArrayList;
 public interface IOwnerService {
     Owner getOwner(int ownerId);
     ArrayList<Owner> getOwners();
+    Owner getOwnerByUserId(int userId);
 }

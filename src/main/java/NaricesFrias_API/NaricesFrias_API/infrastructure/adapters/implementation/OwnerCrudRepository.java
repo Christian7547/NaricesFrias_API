@@ -31,4 +31,10 @@ public class OwnerCrudRepository implements IOwnerDomainRepository {
     public ArrayList<Owner> getOwners() {
         return this.ownerMapper.toOwners(this.ownerRepository.findAll());
     }
+
+    @Override
+    public Owner getOwnerByUserId(int userId) {
+        var ownerExists = ownerRepository.findByUserId(userId);
+        return ownerExists.map(ownerEntity -> ownerMapper.toOwner(ownerEntity)).orElse(null);
+    }
 }

@@ -23,4 +23,9 @@ public class OwnerService implements IOwnerService {
     public ArrayList<Owner> getOwners() {
         return ownerRepository.getOwners();
     }
+
+    @Override
+    public Owner getOwnerByUserId(int userId) {
+        return ownerRepository.getOwnerByUserId(userId);
+    }
 }

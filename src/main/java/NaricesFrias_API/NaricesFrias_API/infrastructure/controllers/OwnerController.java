@@ -27,4 +27,13 @@ public class OwnerController {
     public ResponseEntity<Owner> getOwner(@PathVariable int id){
         return new ResponseEntity<>(ownerService.getOwner(id), HttpStatus.OK);
     }
+
+    @GetMapping("/getOwnerByUserId/{id}")
+    public  ResponseEntity<Owner> getOwnerByUserId(@PathVariable int id){
+        var owner = ownerService.getOwnerByUserId(id);
+        if(owner != null)
+            return new ResponseEntity<>(owner, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
 }
