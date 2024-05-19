@@ -16,6 +16,7 @@ public class UserService implements IUserService {
     @Override
     public User createUser(User user, Owner owner) {
         user.roleId = 2;
+        user.status = 1;
         return userDomainRepository.createUser(user, owner);
     }
 
