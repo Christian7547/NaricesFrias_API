@@ -23,12 +23,12 @@ public class AuthController {
     @PostMapping("/authenticate")
     public ResponseEntity<User> authenticate(@RequestBody AuthDto authDto){
         User user = new User();
-        user.setEmail(authDto.Email);
-        user.setPassword((authDto.Password));
+        user.email = authDto.Email;
+        user.password = authDto.Password;
         var auth = authService.authenticate(user);
         if(auth != null)
             return new ResponseEntity<>(auth, HttpStatus.OK);
         else
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
