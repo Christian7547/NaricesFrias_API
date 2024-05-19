@@ -19,7 +19,7 @@ public class UserController {
     }
 
     @PostMapping("/newUser")
-    public ResponseEntity<User> createUser(@RequestBody UserDto request){
+    public ResponseEntity<?> createUser(@RequestBody UserDto request){
         User user = new User();
         Owner owner = new Owner();
         user.email = request.email;
@@ -30,7 +30,7 @@ public class UserController {
         owner.ci = request.ci;
         owner.phoneNumber = request.phoneNumber;
         owner.address = request.address;
-        return new ResponseEntity<>(userService.createUser(user, owner), HttpStatus.CREATED);
+        return new ResponseEntity<>(owner, HttpStatus.CREATED);
     }
 
     @PatchMapping("/editUser/{id}")
