@@ -1,4 +1,4 @@
-package NaricesFrias_API.NaricesFrias_API.infrastructure.adapters.implementation;
+package NaricesFrias_API.NaricesFrias_API.application.services.implementation;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

@@ -4,7 +4,6 @@ import NaricesFrias_API.NaricesFrias_API.application.services.interfaces.IUserSe
 import NaricesFrias_API.NaricesFrias_API.domain.models.Owner;
 import NaricesFrias_API.NaricesFrias_API.domain.models.User;
 import NaricesFrias_API.NaricesFrias_API.domain.ports.IUserDomainRepository;
-import NaricesFrias_API.NaricesFrias_API.infrastructure.adapters.implementation.Encrypt;
 
 public class UserService implements IUserService {
 
