@@ -14,6 +14,7 @@ public class AuthService implements IAuthService {
 
     @Override
     public User authenticate(User user) {
+        user.password = Encrypt.encrypt(user.password);
         return authDomainRepository.authenticate(user);
     }
 }
