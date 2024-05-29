@@ -30,6 +30,7 @@ public class UserController {
         owner.ci = request.ci;
         owner.phoneNumber = request.phoneNumber;
         owner.address = request.address;
+        userService.createUser(user, owner);
         return new ResponseEntity<>(owner, HttpStatus.CREATED);
     }
 
