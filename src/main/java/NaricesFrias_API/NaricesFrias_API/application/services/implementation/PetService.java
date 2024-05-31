@@ -3,6 +3,7 @@ package NaricesFrias_API.NaricesFrias_API.application.services.implementation;
 import NaricesFrias_API.NaricesFrias_API.application.services.interfaces.IPetService;
 import NaricesFrias_API.NaricesFrias_API.domain.models.Pet;
 import NaricesFrias_API.NaricesFrias_API.domain.ports.IPetDomainRepository;
+import NaricesFrias_API.NaricesFrias_API.infrastructure.dtos.PetDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -47,5 +48,10 @@ public class PetService implements IPetService {
     @Override
     public int uspInsertPetImages(String petName, String petBreed, String petGender, String petInfo, int petOwnerId, String petPath1, String petPath2, String petPath3) {
         return  petRepository.uspInsertPetImages(petName, petBreed, petGender, petInfo, petOwnerId, petPath1, petPath2, petPath3);
+    }
+
+    @Override
+    public PetDetail uspDetailPet(int v_pet_id) {
+        return petRepository.uspDetailPet(v_pet_id);
     }
 }

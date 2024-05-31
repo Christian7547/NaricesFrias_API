@@ -2,6 +2,7 @@ package NaricesFrias_API.NaricesFrias_API.infrastructure.controllers;
 
 import NaricesFrias_API.NaricesFrias_API.application.services.interfaces.IPetService;
 import NaricesFrias_API.NaricesFrias_API.domain.models.Pet;
+import NaricesFrias_API.NaricesFrias_API.infrastructure.dtos.PetDetail;
 import NaricesFrias_API.NaricesFrias_API.infrastructure.dtos.PetRequestDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,5 +57,10 @@ public class PetController {
             return new ResponseEntity<>(result, HttpStatus.CREATED);
         else
             return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+    }
+    @GetMapping("/PetDetail/{v_pet_id}")
+    public ResponseEntity<PetDetail> uspDetailPet(@PathVariable int v_pet_id) {
+        var result = petService.uspDetailPet(v_pet_id);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }
