@@ -3,6 +3,7 @@ package NaricesFrias_API.NaricesFrias_API.infrastructure.adapters.implementation
 import NaricesFrias_API.NaricesFrias_API.domain.models.Pet;
 import NaricesFrias_API.NaricesFrias_API.domain.ports.IPetDomainRepository;
 import NaricesFrias_API.NaricesFrias_API.infrastructure.adapters.interfaces.IPetRepository;
+import NaricesFrias_API.NaricesFrias_API.infrastructure.dtos.PetDetail;
 import NaricesFrias_API.NaricesFrias_API.infrastructure.mappers.PetMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.ParameterMode;
@@ -58,7 +59,6 @@ public class PetCrudRepository implements IPetDomainRepository {
         return petMapper.toPet(updatedPet);
     }
 
-//petName, :petBreed, :petGender, :petInfo, :petOwnerId, :petPath1, :petPath2, :petPath3)")
 
     @Override
     public int uspInsertPetImages(String petName, String petBreed, String petGender, String petInfo,
@@ -90,5 +90,29 @@ public class PetCrudRepository implements IPetDomainRepository {
         procedureQuery.execute();
         var x = procedureQuery.getOutputParameterValue("insert_count");
         return Integer.parseInt(x.toString());
+    }
+
+    @Override
+    public PetDetail uspDetailPet(int v_pet_id) {
+        StoredProcedureQuery procedureQuery = entityManager.createStoredProcedureQuery("uspDetailPet");
+
+        procedureQuery.registerStoredProcedureParameter("v_pet_id", Integer.class, ParameterMode.IN);
+        procedureQuery.registerStoredProcedureParameter("v_name", String.class, ParameterMode.OUT);
+        procedureQuery.registerStoredProcedureParameter("v_breed", String.class, ParameterMode.OUT);
+        procedureQuery.registerStoredProcedureParameter("v_gender", String.class, ParameterMode.OUT);
+        procedureQuery.registerStoredProcedureParameter("v_info", String.class, ParameterMode.OUT);
+        procedureQuery.registerStoredProcedureParameter("v_path_img", String.class, ParameterMode.OUT);
+
+        procedureQuery.setParameter("v_pet_id", v_pet_id);
+        procedureQuery.execute();
+
+        String name = (String) procedureQuery.getOutputParameterValue("v_name");
+        String breed = (String) procedureQuery.getOutputParameterValue("v_breed");
+        String gender = (String) procedureQuery.getOutputParameterValue("v_gender");
+        String info = (String) procedureQuery.getOutputParameterValue("v_info");
+        String path_img = (String) procedureQuery.getOutputParameterValue("v_path_img");
+
+        PetDetail detail = new PetDetail(name, breed, gender, info, path_img);
+        return detail;
     }
 }

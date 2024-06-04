@@ -1,6 +1,7 @@
 package NaricesFrias_API.NaricesFrias_API.infrastructure.mappers;
 
 import NaricesFrias_API.NaricesFrias_API.domain.models.Pet;
+import NaricesFrias_API.NaricesFrias_API.infrastructure.dtos.PetDetail;
 import NaricesFrias_API.NaricesFrias_API.infrastructure.entities.PetEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
