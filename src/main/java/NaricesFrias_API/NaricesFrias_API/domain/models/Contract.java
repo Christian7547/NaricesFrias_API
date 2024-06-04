@@ -5,10 +5,7 @@ import lombok.Data;
 @Data
 public class Contract {
     public int id;
-    public String name;
-    public String breed;
-    public String gender;
-    public String info;
-    public short status;
-    public int ownerId;
+    public String contract_type;
+    public Double price;
+    public String serial_number_contract;
 }
