@@ -4,15 +4,14 @@ import NaricesFrias_API.NaricesFrias_API.domain.models.Pet;
 import NaricesFrias_API.NaricesFrias_API.domain.ports.IPetDomainRepository;
 import NaricesFrias_API.NaricesFrias_API.infrastructure.adapters.interfaces.IPetRepository;
 import NaricesFrias_API.NaricesFrias_API.infrastructure.dtos.PetDetail;
+import NaricesFrias_API.NaricesFrias_API.infrastructure.dtos.Pets;
 import NaricesFrias_API.NaricesFrias_API.infrastructure.mappers.PetMapper;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.ParameterMode;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.StoredProcedureQuery;
+import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class PetCrudRepository implements IPetDomainRepository {
@@ -102,6 +101,8 @@ public class PetCrudRepository implements IPetDomainRepository {
         procedureQuery.registerStoredProcedureParameter("v_gender", String.class, ParameterMode.OUT);
         procedureQuery.registerStoredProcedureParameter("v_info", String.class, ParameterMode.OUT);
         procedureQuery.registerStoredProcedureParameter("v_path_img", String.class, ParameterMode.OUT);
+        procedureQuery.registerStoredProcedureParameter("v_path_img2", String.class, ParameterMode.OUT);
+        procedureQuery.registerStoredProcedureParameter("v_path_img3", String.class, ParameterMode.OUT);
 
         procedureQuery.setParameter("v_pet_id", v_pet_id);
         procedureQuery.execute();
@@ -111,8 +112,35 @@ public class PetCrudRepository implements IPetDomainRepository {
         String gender = (String) procedureQuery.getOutputParameterValue("v_gender");
         String info = (String) procedureQuery.getOutputParameterValue("v_info");
         String path_img = (String) procedureQuery.getOutputParameterValue("v_path_img");
+        String path_img2 = (String) procedureQuery.getOutputParameterValue("v_path_img2");
+        String path_img3 = (String) procedureQuery.getOutputParameterValue("v_path_img3");
 
-        PetDetail detail = new PetDetail(name, breed, gender, info, path_img);
+        PetDetail detail = new PetDetail(name, breed, gender, info, path_img, path_img2, path_img3);
         return detail;
+    }
+
+    @Override
+    public List<Pets> uspPetsOwner(int v_owner_id) {
+
+        List<Pets> pets = new ArrayList<>();
+
+        Query query = entityManager.createNativeQuery(
+                "SELECT * FROM usppetsowner(:v_owner_id)");
+
+        query.setParameter("v_owner_id", v_owner_id);
+
+        List<Object[]> resultList = query.getResultList();
+
+        for (Object[] result : resultList) {
+            Pets pet = new Pets(
+                    (Integer) result[0],
+                    (String) result[1],
+                    (String) result[2],
+                    (String) result[3],
+                    (String) result[4]);
+            pets.add(pet);
+        }
+
+        return pets;
     }
 }

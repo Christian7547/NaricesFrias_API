@@ -2,8 +2,10 @@ package NaricesFrias_API.NaricesFrias_API.application.services.interfaces;
 
 import NaricesFrias_API.NaricesFrias_API.domain.models.Pet;
 import NaricesFrias_API.NaricesFrias_API.infrastructure.dtos.PetDetail;
+import NaricesFrias_API.NaricesFrias_API.infrastructure.dtos.Pets;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface IPetService {
     Pet createPet(Pet pet);
@@ -15,4 +17,6 @@ public interface IPetService {
                                    int petOwnerId, String petPath1, String petPath2, String petPath3);
 
     PetDetail uspDetailPet(int v_pet_id);
+
+    List<Pets> uspPetsOwner(int v_owner_id);
 }
