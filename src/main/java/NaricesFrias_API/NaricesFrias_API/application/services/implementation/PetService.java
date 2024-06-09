@@ -4,12 +4,14 @@ import NaricesFrias_API.NaricesFrias_API.application.services.interfaces.IPetSer
 import NaricesFrias_API.NaricesFrias_API.domain.models.Pet;
 import NaricesFrias_API.NaricesFrias_API.domain.ports.IPetDomainRepository;
 import NaricesFrias_API.NaricesFrias_API.infrastructure.dtos.PetDetail;
+import NaricesFrias_API.NaricesFrias_API.infrastructure.dtos.Pets;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PetService implements IPetService {
     private final IPetDomainRepository petRepository;
@@ -53,5 +55,10 @@ public class PetService implements IPetService {
     @Override
     public PetDetail uspDetailPet(int v_pet_id) {
         return petRepository.uspDetailPet(v_pet_id);
+    }
+
+    @Override
+    public List<Pets> uspPetsOwner(int v_owner_id) {
+        return petRepository.uspPetsOwner(v_owner_id);
     }
 }
